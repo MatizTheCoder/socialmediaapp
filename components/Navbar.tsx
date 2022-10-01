@@ -44,6 +44,22 @@ const { userProfile, addUser } = userAuthStore()
                   <span className='hidden md:block'>Upload</span>
                 </button>
               </Link>
+              {userProfile.image && (
+                 <Link href="/">
+                 <>
+                  <Image
+                       width={40}
+                       height={40}
+                       className='rounded-full cursor-pointer'
+                       src={userProfile.image}
+                       alt='user-profile'                       
+                     />  
+                 </>
+                 </Link>  
+              )}
+              <button type='button'>
+                <AiOutlineLogout color='red' fontSize={21} />
+              </button>
             </div>
           ): (
             <GoogleLogin 
