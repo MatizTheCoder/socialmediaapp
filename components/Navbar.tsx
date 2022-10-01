@@ -37,8 +37,13 @@ const { userProfile, addUser } = userAuthStore()
 
         <div>
           {userProfile ? (
-            <div>
-              {userProfile.userName}
+            <div className='flex gap-5 md:gap-10'>
+              <Link href="/upload">
+                <button className='border-2 px-2 md:px-4 text-md font-semibol flex items-center gap-2'>
+                  <IoMdAdd className='text-xl' />{` `}
+                  <span className='hidden md:block'>Upload</span>
+                </button>
+              </Link>
             </div>
           ): (
             <GoogleLogin 
