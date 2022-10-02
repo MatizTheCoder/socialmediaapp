@@ -1,4 +1,7 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { MdFavorite } from 'react-icons/md'
+
+import userAuthStore from '../store/authStore'
 
 const LikeButton = () => {
   return (
