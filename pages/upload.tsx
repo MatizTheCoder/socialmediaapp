@@ -11,7 +11,7 @@ import { client } from '../utils/client'
 const Upload = () => {
   const [isLoading, setIsloading] = useState(false)
   const [videoAsset, setVideoAsset] = useState<SanityAssetDocument | undefined>()
-  const [wrongFileType, SetwrongFileType] = useState()
+  const [wrongFileType, setWrongFileType] = useState()
 
   const uploadVideo =async (e:any) => {
     const selectedFile = e.target.files[0]
