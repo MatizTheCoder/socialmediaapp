@@ -1,16 +1,26 @@
 import React, { useState, useEffect } from 'react'
 import { MdFavorite } from 'react-icons/md'
-
 import userAuthStore from '../store/authStore'
 
 interface IProps {
     handleLike: () => void
     handleDisLike: () => void
+    likes: any []
 }
 
-const LikeButton = ({handleLike, handleDisLike} : IProps) => {
-    const [alreadyLiked, setAlreadyLiked] = useState(true)
-    const { userProfile } = userAuthStore()
+const LikeButton = ({ likes, handleLike, handleDisLike } : IProps) => {
+    const [alreadyLiked, setAlreadyLiked] = useState(false)
+    const { userProfile } : any = userAuthStore()
+    const filterLikes = likes?.filter((item) => item._ref === userProfile?._id)
+
+    useEffect(() => {
+        if(filterLikes?.length > 0) {
+            setAlreadyLiked(true)
+        } else {
+            setAlreadyLiked(false)
+        }
+    }, [filterLikes, likes])
+
   return (
     <div className='gap-6'>
         <div className='mt-4 flex flex-col justify-center items-center cursor-pointer'>
@@ -24,7 +34,7 @@ const LikeButton = ({handleLike, handleDisLike} : IProps) => {
                 </div>
             )}
             <p className='text-md font-semibold'>
-                likes?.length | 0
+                {likes?.length || 0}
             </p>
         </div>
     </div>
