@@ -89,7 +89,8 @@ const onVideoPress = () => {
                   <button onClick={onVideoPress}>
                    <BsFillPlayFill className='text-black text-2xl lg:text-4xl'/>
                   </button>
-                )}{isVideoMuted?(
+                )}
+                {isVideoMuted?(
                   <button onClick={() => setIsVideoMuted(false)}>
                     <HiVolumeOff  className='text-black text-2xl lg:text-4xl'/>
                   </button>
