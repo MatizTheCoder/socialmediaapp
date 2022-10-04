@@ -24,6 +24,8 @@ const Detail = ({ postDetails }: IProps) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const router = useRouter();
   const { userProfile }: any =  useAuthStore()
+  const [comment, setComment] = useState('')
+  const [isPostingComment, setIsPostingComment] = useState(false)
 
   const onVideoClick = () => {
     if (playing) {
@@ -50,6 +52,23 @@ const Detail = ({ postDetails }: IProps) => {
       })
 
       setPost({ ...post, likes: data.likes })
+
+    }    
+  }
+
+  const addComment = async (e : any) => {
+    e.preventDefault()
+
+    if( userProfile && comment){
+        setIsPostingComment(true)
+        const response = await axios.put(`${BASE_URL}/api/post/${post._id}`, {
+          userId: userProfile._id,
+          comment
+        })
+
+        setPost({ ...post, comments: data.comments})
+        setComment('')
+        setIsPostingComment(false)
 
     }    
   }
@@ -123,8 +142,7 @@ const Detail = ({ postDetails }: IProps) => {
                 <div className="mt-3 flex flex-col gap-2">
                   <p className="flex gap-2 items-center md:text-md font bold text-primary">
                     {post.postedBy.userName}{" "}
-                    {`
-                `}
+                    {` `}
                     <GoVerified className="text-blue-400 text-md" />
                   </p>
                   <p className="capitalize font-medium text-xs txt-gray-500 hidden md:block">
@@ -140,7 +158,11 @@ const Detail = ({ postDetails }: IProps) => {
                       />}
                   </div>
                   <Comments 
-                  
+                    comment = {comment}
+                    setComment ={setComment}
+                    addComment={addComment}
+                    commebts={post.comments}
+                    isPostingComment={isPostingComment}
                   />
                 </div>
               </Link>
