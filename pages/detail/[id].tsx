@@ -144,7 +144,7 @@ const Detail = ({ postDetails }: IProps) => {
                   likes={post.likes}
                   flex='flex'
                   handleLike={() => handleLike(true)}
-                  handleDislike={() => handleLike(false)}
+                  handleDisLike={() => handleLike(false)}
                 />}
               </div>
               <Comments
